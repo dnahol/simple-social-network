@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/satellizer/satellizer.min.js"></script>
+
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+
+</head>
+<body ng-app='authApp' ng-controller='mainCtrl'>
+
+  Auth: {{ isAuthenticated() }}
+
+  <div class="container">    
+    <div class="row">
+      <button class="btn btn-sm btn-default" ui-sref='home'>Home</button>
+      <span ng-hide='isAuthenticated()'>
+        <button class="btn btn-sm btn-default" ui-sref='login'>Login</button>
+        <button class="btn btn-sm btn-default" ui-sref='register'>Register</button>
+      </span>
+      <span ng-show='isAuthenticated()'>
+        <button class="btn btn-sm btn-default" ui-sref='profile'>Profile</button>
+        <button class="btn btn-sm btn-default" ng-click='logout()'>Logout</button>
+        <span>Hello {{currentUser.username}}!</span>
+      </span>
+    </div>
+
+    <ui-view></ui-view>
+    
+  </div>
+
+</body>
+</html>
